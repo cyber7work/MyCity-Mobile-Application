@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SplashOne from '../../assets/svgs/splashOne.svg';
 import {COLORS} from '../../utils/Colors';
+import fonts from '../../utils/fonts';
 import {fontSizes} from '../../utils/fontSizes';
 import {width} from '../../utils/globals';
 
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
     color: COLORS.secondary,
     fontSize: fontSizes.splashHeader,
+    fontFamily: fonts.kanitBold,
   },
   discover: {fontSize: fontSizes.h3, marginTop: 3, marginBottom: 10},
   explore: {fontSize: fontSizes.h2, fontWeight: '500', color: COLORS.secondary},
