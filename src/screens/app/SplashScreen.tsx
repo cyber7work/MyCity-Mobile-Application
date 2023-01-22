@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import SplashOne from '../../assets/svgs/splashOne.svg';
 import {COLORS} from '../../utils/Colors';
 import fonts from '../../utils/fonts';
 import {fontSizes} from '../../utils/fontSizes';
 import {width} from '../../utils/globals';
+import SplashOne from '../../assets/svgs/splashOne.svg';
+import Home from '../../assets/svgs/home.svg';
 
 /* React functional component */
 const SplashScreen = () => {
@@ -17,13 +18,13 @@ const SplashScreen = () => {
       />
 
       <View style={styles.homeIconContainer}>
-        <Text>H</Text>
+        <Home width={22} height={22} />
       </View>
       <View style={styles.innerContainer}>
         <View>
           <View style={styles.txtContainer}>
             <Text style={styles.header}>My city</Text>
-            <Text style={styles.header}>Application</Text>
+            <Text style={[styles.header, styles.application]}>Application</Text>
             <Text style={styles.discover}>Discover Your City</Text>
           </View>
           <View style={styles.splashSvgContainer}>
@@ -58,14 +59,23 @@ const styles = StyleSheet.create({
   splashSvgContainer: {alignSelf: 'center'},
   exploreBtnContainer: {alignItems: 'center'},
   header: {
-    fontWeight: 'bold',
     textTransform: 'capitalize',
     color: COLORS.secondary,
     fontSize: fontSizes.splashHeader,
-    fontFamily: fonts.kanitBold,
+    fontFamily: fonts.kanitSemiBold,
   },
-  discover: {fontSize: fontSizes.h3, marginTop: 3, marginBottom: 10},
-  explore: {fontSize: fontSizes.h2, fontWeight: '500', color: COLORS.secondary},
+  application: {marginTop: -5},
+  discover: {
+    fontSize: fontSizes.h3,
+    marginBottom: 10,
+    fontFamily: fonts.cabinRegular,
+    letterSpacing: 0.5,
+  },
+  explore: {
+    fontSize: fontSizes.h2,
+    color: COLORS.secondary,
+    fontFamily: fonts.kanitSemiBold,
+  },
   exploreContainer: {
     backgroundColor: COLORS.primary,
     paddingVertical: 12,

@@ -1,6 +1,6 @@
 /* font sizes */
 export const fontSizes = {
-  splashHeader: 28,
+  splashHeader: 32,
   h1: 24,
   h2: 22,
   h3: 20,
