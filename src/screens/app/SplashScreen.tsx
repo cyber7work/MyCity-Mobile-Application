@@ -8,6 +8,21 @@ import {width} from '../../utils/globals';
 import SplashOne from '../../assets/svgs/splashOne.svg';
 import Home from '../../assets/svgs/home.svg';
 
+const renderSplashCarousel = () => {
+  return (
+    <View>
+      <View style={styles.txtContainer}>
+        <Text style={styles.header}>My city</Text>
+        <Text style={[styles.header, styles.application]}>Application</Text>
+        <Text style={styles.discover}>Discover Your City</Text>
+      </View>
+      <View style={styles.splashSvgContainer}>
+        <SplashOne />
+      </View>
+    </View>
+  );
+};
+
 /* React functional component */
 const SplashScreen = () => {
   return (
@@ -21,16 +36,8 @@ const SplashScreen = () => {
         <Home width={22} height={22} />
       </View>
       <View style={styles.innerContainer}>
-        <View>
-          <View style={styles.txtContainer}>
-            <Text style={styles.header}>My city</Text>
-            <Text style={[styles.header, styles.application]}>Application</Text>
-            <Text style={styles.discover}>Discover Your City</Text>
-          </View>
-          <View style={styles.splashSvgContainer}>
-            <SplashOne />
-          </View>
-        </View>
+        {renderSplashCarousel()}
+
         <View style={styles.exploreBtnContainer}>
           <TouchableOpacity style={styles.exploreContainer} activeOpacity={0.6}>
             <Text style={styles.explore}>Let's Explore</Text>
