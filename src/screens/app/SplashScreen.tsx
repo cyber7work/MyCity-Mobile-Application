@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS} from '../../utils/Colors';
 import fonts from '../../utils/fonts';
@@ -7,6 +8,9 @@ import {fontSizes} from '../../utils/fontSizes';
 import {width} from '../../utils/globals';
 import SplashOne from '../../assets/svgs/splashOne.svg';
 import Home from '../../assets/svgs/home.svg';
+import {AuthStackParams} from '../../utils/types';
+
+type Props = NativeStackScreenProps<AuthStackParams, 'splash'>;
 
 const renderSplashCarousel = () => {
   return (
@@ -24,7 +28,7 @@ const renderSplashCarousel = () => {
 };
 
 /* React functional component */
-const SplashScreen = () => {
+const SplashScreen = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -39,7 +43,12 @@ const SplashScreen = () => {
         {renderSplashCarousel()}
 
         <View style={styles.exploreBtnContainer}>
-          <TouchableOpacity style={styles.exploreContainer} activeOpacity={0.6}>
+          <TouchableOpacity
+            style={styles.exploreContainer}
+            activeOpacity={0.6}
+            onPress={() => {
+              navigation.navigate('login');
+            }}>
             <Text style={styles.explore}>Let's Explore</Text>
           </TouchableOpacity>
         </View>

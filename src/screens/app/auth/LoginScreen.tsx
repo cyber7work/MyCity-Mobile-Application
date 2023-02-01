@@ -7,14 +7,18 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {COLORS} from '../../../utils/Colors';
 import Home from '../../../assets/svgs/home.svg';
 import Login from '../../../assets/svgs/login.svg';
 import {fontSizes} from '../../../utils/fontSizes';
 import fonts from '../../../utils/fonts';
+import {AuthStackParams} from '../../../utils/types';
+
+type Props = NativeStackScreenProps<AuthStackParams, 'splash'>;
 
 /* React functional component */
-const LoginScreen = () => {
+const LoginScreen = ({navigation}: Props) => {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -38,7 +42,10 @@ const LoginScreen = () => {
         <View style={styles.continueBtnContainer}>
           <TouchableOpacity
             style={styles.continueContainer}
-            activeOpacity={0.6}>
+            activeOpacity={0.6}
+            onPress={() => {
+              navigation.navigate('otp', {phone: '+918603678862'});
+            }}>
             <Text style={styles.continue}>Continue</Text>
           </TouchableOpacity>
         </View>

@@ -5,8 +5,7 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
-import LoginScreen from './src/screens/app/auth/LoginScreen';
-// import SplashScreen from './src/screens/app/SplashScreen';
+import AuthNavigator from './src/navigators/AuthNavigator';
 
 /* React functional component */
 const App = (): JSX.Element => {
@@ -17,8 +16,7 @@ const App = (): JSX.Element => {
     <SafeAreaView style={styles.safeAreaContainer}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
 
-      {/* <SplashScreen /> */}
-      <LoginScreen />
+      <AuthNavigator />
     </SafeAreaView>
   );
 };
