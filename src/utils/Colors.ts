@@ -8,6 +8,7 @@ export const COLORS = {
   white: '#FFFFFF',
   color1: '#C5F1FF',
   color2: '#A1A1A1',
+  color3: '#E0E0E0',
 };
 
 export default null;

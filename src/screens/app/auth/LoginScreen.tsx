@@ -15,12 +15,12 @@ import {fontSizes} from '../../../utils/fontSizes';
 import fonts from '../../../utils/fonts';
 import {AuthStackParams} from '../../../utils/types';
 
-type Props = NativeStackScreenProps<AuthStackParams, 'splash'>;
+type Props = NativeStackScreenProps<AuthStackParams, 'login'>;
 
 /* React functional component */
 const LoginScreen = ({navigation}: Props) => {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.container}>
         <View style={styles.homeIconContainer}>
           <Home width={22} height={22} />
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
     borderBottomColor: COLORS.color2,
   },
+  scrollView: {flexGrow: 1},
 });
 
 export default LoginScreen;

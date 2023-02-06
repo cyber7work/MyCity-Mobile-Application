@@ -4,6 +4,7 @@ import SplashScreen from '../screens/app/SplashScreen';
 import LoginScreen from '../screens/app/auth/LoginScreen';
 import {AuthStackParams} from '../utils/types';
 import EnterOtpScreen from '../screens/app/auth/EnterOtpScreen';
+import RegisterScreen from '../screens/app/auth/RegisterScreen';
 
 const Stack = createNativeStackNavigator<AuthStackParams>();
 
@@ -16,6 +17,7 @@ const AuthNavigator = () => {
       <Stack.Screen name="splash" component={SplashScreen} />
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="otp" component={EnterOtpScreen} />
+      <Stack.Screen name="register" component={RegisterScreen} />
     </Stack.Navigator>
   );
 };

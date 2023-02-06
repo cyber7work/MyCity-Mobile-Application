@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     top: -width / 2,
     left: -width / 2,
   },
+  scrollView: {flexGrow: 1},
 });
 
 export default SplashScreen;

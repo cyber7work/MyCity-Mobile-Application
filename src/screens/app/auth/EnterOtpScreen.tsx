@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,13 +14,16 @@ import {fontSizes} from '../../../utils/fontSizes';
 import fonts from '../../../utils/fonts';
 import {AuthStackParams} from '../../../utils/types';
 import {height} from '../../../utils/globals';
+import OtpComponent from '../../../components/Otp';
 
 type Props = NativeStackScreenProps<AuthStackParams, 'otp'>;
 
 /* React functional component */
-const EnterOtpScreen = ({route}: Props) => {
+const EnterOtpScreen = ({route, navigation}: Props) => {
+  const [otp, setOtp] = useState<Array<string>>(['', '', '', '', '', '', '']);
+
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.container}>
         <View style={styles.homeIconContainer}>
           <Home width={22} height={22} />
@@ -34,10 +37,17 @@ const EnterOtpScreen = ({route}: Props) => {
           <Text style={styles.otpTxt}>
             a 6 digit otp has been sent to {route.params.phone}
           </Text>
+
+          <OtpComponent otpValue={otp} updateOtpValue={setOtp} />
         </View>
 
         <View style={styles.loginBtnContainer}>
-          <TouchableOpacity style={styles.loginContainer} activeOpacity={0.6}>
+          <TouchableOpacity
+            style={styles.loginContainer}
+            activeOpacity={0.6}
+            onPress={() => {
+              navigation.navigate('register');
+            }}>
             <Text style={styles.login}>Login</Text>
           </TouchableOpacity>
         </View>
@@ -91,6 +101,7 @@ const styles = StyleSheet.create({
     width: 250,
     alignItems: 'center',
   },
+  scrollView: {flexGrow: 1},
 });
 
 export default EnterOtpScreen;
