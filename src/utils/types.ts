@@ -11,6 +11,9 @@ export type AppStackParams = {
 
 export type HomeTabsParams = {
   homeScreen: undefined;
+  city: undefined;
+  myServices: undefined;
+  services: undefined;
 };
 
 export default null;

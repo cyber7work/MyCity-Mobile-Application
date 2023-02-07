@@ -7,33 +7,23 @@ import {
   TextInput,
 } from 'react-native';
 import IoniconIcon from 'react-native-vector-icons/Ionicons';
-import {COLORS} from '../../../../utils/Colors';
-import fonts from '../../../../utils/fonts';
-import {fontSizes} from '../../../../utils/fontSizes';
+import {COLORS} from '../utils/Colors';
+import fonts from '../utils/fonts';
+import {fontSizes} from '../utils/fontSizes';
 
 export type SelectedType = 'services' | 'city';
 
-type PropsType = {
-  selectedType: SelectedType;
-  setSelectedType: React.Dispatch<React.SetStateAction<SelectedType>>;
+type Props = {
+  btnLabel: string;
 };
 
 /* React functional component */
-const SearchBarWithBtn = ({selectedType, setSelectedType}: PropsType) => {
+const SearchBarWithBtn = ({btnLabel}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
-        <TouchableOpacity
-          style={styles.leftInnerContainer}
-          activeOpacity={0.6}
-          onPress={() => {
-            if (selectedType === 'services') {
-              setSelectedType('city');
-            } else {
-              setSelectedType('services');
-            }
-          }}>
-          <Text style={styles.txt}>{selectedType}</Text>
+        <TouchableOpacity style={styles.leftInnerContainer} activeOpacity={0.6}>
+          <Text style={styles.txt}>{btnLabel}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.rightContainer}>

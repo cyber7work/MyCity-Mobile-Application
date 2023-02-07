@@ -3,7 +3,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AppStackParams, HomeTabsParams} from '../utils/types';
 import HomeScreen from '../screens/app/home/HomeScreen';
-import {COLORS} from '../utils/Colors';
+import CustomBottomTab from './CustomBottomTab';
+import CityHomeScreen from '../screens/app/city/CityHomeScreen';
+import MyServicesHomeScreen from '../screens/app/myServices/MyServicesHomeScreen';
+import ServicesHomeScreen from '../screens/app/services/ServicesHomeScreen';
 
 const Stack = createNativeStackNavigator<AppStackParams>();
 
@@ -13,16 +16,13 @@ const HomeTabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="homeScreen"
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {backgroundColor: COLORS.color1},
-        tabBarIconStyle: {display: 'none'},
-      }}>
-      <Tab.Screen
-        name="homeScreen"
-        options={{tabBarLabel: 'Home'}}
-        component={HomeScreen}
-      />
+      // eslint-disable-next-line react/no-unstable-nested-components
+      tabBar={props => <CustomBottomTab key="customBar" {...props} />}
+      screenOptions={{headerShown: false}}>
+      <Tab.Screen name="homeScreen" component={HomeScreen} />
+      <Tab.Screen name="city" component={CityHomeScreen} />
+      <Tab.Screen name="myServices" component={MyServicesHomeScreen} />
+      <Tab.Screen name="services" component={ServicesHomeScreen} />
     </Tab.Navigator>
   );
 };

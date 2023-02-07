@@ -10,6 +10,7 @@ export const COLORS = {
   color2: '#A1A1A1',
   color3: '#E0E0E0',
   color4: '#AFAFAF',
+  color5: '#C0BFBF',
 };
 
 export default null;
