@@ -1,17 +1,27 @@
-import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import Header from '../../../components/Header';
 import {COLORS} from '../../../utils/Colors';
 import fonts from '../../../utils/fonts';
-import HomeHeader from '../../../components/HomeHeader';
+import CityList from './components/CityList';
+import SearchBarWithBtn, {SelectedType} from './components/SearchBarWithBtn';
+import ServiceList from './components/ServiceList';
 
 /* react functional component */
 const HomeScreen = () => {
+  const [selectedType, setSelectedType] = useState<SelectedType>('services');
+
   return (
     <View>
-      <HomeHeader />
+      <Header />
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.container}>
-          <Text>Home</Text>
+          <SearchBarWithBtn
+            selectedType={selectedType}
+            setSelectedType={setSelectedType}
+          />
+          {selectedType === 'services' && <ServiceList />}
+          {selectedType === 'city' && <CityList />}
         </View>
       </ScrollView>
     </View>
@@ -20,8 +30,8 @@ const HomeScreen = () => {
 
 /* styles */
 const styles = StyleSheet.create({
-  scrollView: {flexGrow: 1},
-  container: {flex: 1, backgroundColor: COLORS.bgColor},
+  scrollView: {flexGrow: 1, height: '100%'},
+  container: {flex: 1, backgroundColor: COLORS.bgColor, padding: 10},
   headerContainer: {
     backgroundColor: COLORS.color3,
     flexDirection: 'row',
