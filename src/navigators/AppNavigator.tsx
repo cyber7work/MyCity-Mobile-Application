@@ -7,6 +7,7 @@ import CustomBottomTab from './CustomBottomTab';
 import CityHomeScreen from '../screens/app/city/CityHomeScreen';
 import MyServicesHomeScreen from '../screens/app/myServices/MyServicesHomeScreen';
 import ServicesHomeScreen from '../screens/app/services/ServicesHomeScreen';
+import MyProfileScreen from '../screens/app/profile/MyProfileScreen';
 
 const Stack = createNativeStackNavigator<AppStackParams>();
 
@@ -34,6 +35,7 @@ const AppNavigator = () => {
       initialRouteName="home"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="home" component={HomeTabNavigator} />
+      <Stack.Screen name="profile" component={MyProfileScreen} />
     </Stack.Navigator>
   );
 };

@@ -7,12 +7,12 @@ import {
   View,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import Home from '../../../assets/svgs/home.svg';
-import NewUser from '../../../assets/svgs/newUser.svg';
-import {AuthStackParams} from '../../../utils/types';
-import {COLORS} from '../../../utils/Colors';
-import {fontSizes} from '../../../utils/fontSizes';
-import fonts from '../../../utils/fonts';
+import Home from '../../assets/svgs/home.svg';
+import NewUser from '../../assets/svgs/newUser.svg';
+import {AuthStackParams} from '../../utils/types';
+import {COLORS} from '../../utils/Colors';
+import {fontSizes} from '../../utils/fontSizes';
+import fonts from '../../utils/fonts';
 
 type Props = NativeStackScreenProps<AuthStackParams, 'register'>;
 

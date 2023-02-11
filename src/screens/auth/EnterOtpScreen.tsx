@@ -7,14 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {COLORS} from '../../../utils/Colors';
-import Home from '../../../assets/svgs/home.svg';
-import Otp from '../../../assets/svgs/otp.svg';
-import {fontSizes} from '../../../utils/fontSizes';
-import fonts from '../../../utils/fonts';
-import {AuthStackParams} from '../../../utils/types';
-import {height} from '../../../utils/globals';
-import OtpComponent from '../../../components/Otp';
+import {COLORS} from '../../utils/Colors';
+import Home from '../../assets/svgs/home.svg';
+import Otp from '../../assets/svgs/otp.svg';
+import {fontSizes} from '../../utils/fontSizes';
+import fonts from '../../utils/fonts';
+import {AuthStackParams} from '../../utils/types';
+import {height} from '../../utils/globals';
+import OtpComponent from '../../components/Otp';
 
 type Props = NativeStackScreenProps<AuthStackParams, 'otp'>;
 

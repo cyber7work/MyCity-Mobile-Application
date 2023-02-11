@@ -7,6 +7,7 @@ export type AuthStackParams = {
 
 export type AppStackParams = {
   home: undefined;
+  profile: undefined;
 };
 
 export type HomeTabsParams = {

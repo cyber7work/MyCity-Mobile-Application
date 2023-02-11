@@ -1,17 +1,23 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {View, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import Profile from '../assets/svgs/profile.svg';
 import Message from '../assets/svgs/messages.svg';
 import {COLORS} from '../utils/Colors';
 import fonts from '../utils/fonts';
+import {AppStackParams} from '../utils/types';
 
 /* react functional component */
 const Header = () => {
+  const navigation = useNavigation<NavigationProp<AppStackParams>>();
+
   return (
     <View style={styles.headerContainer}>
       <View style={styles.leftContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('profile');
+          }}>
           <Profile />
         </TouchableOpacity>
         <TouchableOpacity style={styles.messageContainer}>

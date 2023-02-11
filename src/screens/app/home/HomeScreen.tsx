@@ -1,10 +1,14 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
+// import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Header from '../../../components/Header';
 import SearchBarWithBtn from '../../../components/SearchBarWithBtn';
 import {COLORS} from '../../../utils/Colors';
 import fonts from '../../../utils/fonts';
 import ServiceList from './components/ServiceList';
+// import {AppStackParams} from '../../../utils/types';
+
+// type Props = NativeStackScreenProps<AppStackParams, 'home'>;
 
 /* react functional component */
 const HomeScreen = () => {

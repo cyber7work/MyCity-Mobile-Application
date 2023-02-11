@@ -8,12 +8,12 @@ import {
   TextInput,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {COLORS} from '../../../utils/Colors';
-import Home from '../../../assets/svgs/home.svg';
-import Login from '../../../assets/svgs/login.svg';
-import {fontSizes} from '../../../utils/fontSizes';
-import fonts from '../../../utils/fonts';
-import {AuthStackParams} from '../../../utils/types';
+import {COLORS} from '../../utils/Colors';
+import Home from '../../assets/svgs/home.svg';
+import Login from '../../assets/svgs/login.svg';
+import {fontSizes} from '../../utils/fontSizes';
+import fonts from '../../utils/fonts';
+import {AuthStackParams} from '../../utils/types';
 
 type Props = NativeStackScreenProps<AuthStackParams, 'login'>;
 
