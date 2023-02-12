@@ -12,9 +12,11 @@ const CustomBottomTab = ({state, navigation}: BottomTabBarProps) => {
       <TouchableOpacity
         style={styles.raiseComplaintsContainer}
         activeOpacity={0.6}>
-        <Text style={styles.raiseComplaints}>Raise</Text>
+        <Text style={styles.raiseComplaints}>
+          {state.index === 2 || state.index === 3 ? 'Add' : 'Raise'}
+        </Text>
         <Text style={[styles.raiseComplaints, styles.complaintsTxt]}>
-          Complaints
+          {state.index === 2 || state.index === 3 ? 'Services' : 'Complaints'}
         </Text>
       </TouchableOpacity>
       <View style={styles.bottomView}>
@@ -90,7 +92,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  raiseComplaints: {fontFamily: fonts.kanitSemiBold, fontSize: fontSizes.h4},
+  raiseComplaints: {
+    fontFamily: fonts.kanitSemiBold,
+    fontSize: fontSizes.h4,
+    color: COLORS.secondary,
+  },
   complaintsTxt: {marginTop: -5},
   bottomView: {
     backgroundColor: COLORS.color1,

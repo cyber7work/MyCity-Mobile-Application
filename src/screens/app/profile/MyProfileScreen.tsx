@@ -54,34 +54,13 @@ const MyProfileScreen = ({navigation}: Props) => {
             </View>
           </View>
 
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              marginTop: 25,
-              justifyContent: 'center',
-              marginBottom: 15,
-            }}>
+          <View style={styles.optionsContainer}>
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
               return (
                 <TouchableOpacity
                   key={index.toString()}
                   activeOpacity={0.7}
-                  style={{
-                    width: 150,
-                    backgroundColor: COLORS.color1,
-                    height: 140,
-                    margin: 15,
-                    borderRadius: 5,
-                    shadowOffset: {
-                      width: 0,
-                      height: 3,
-                    },
-                    shadowOpacity: 0.27,
-                    shadowRadius: 4.65,
-                    elevation: 6,
-                  }}
+                  style={styles.optionsItem}
                 />
               );
             })}
@@ -168,6 +147,28 @@ const styles = StyleSheet.create({
     color: COLORS.secondary,
     fontFamily: fonts.cabinSemiBold,
     fontSize: fontSizes.h4,
+  },
+  optionsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 25,
+    justifyContent: 'center',
+    marginBottom: 15,
+  },
+  optionsItem: {
+    width: 150,
+    backgroundColor: COLORS.color1,
+    height: 140,
+    margin: 15,
+    borderRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
 });
 
