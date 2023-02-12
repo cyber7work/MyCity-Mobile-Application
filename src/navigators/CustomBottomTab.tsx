@@ -11,7 +11,12 @@ const CustomBottomTab = ({state, navigation}: BottomTabBarProps) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.raiseComplaintsContainer}
-        activeOpacity={0.6}>
+        activeOpacity={0.6}
+        onPress={() => {
+          if (state.index === 2 || state.index === 3) {
+            navigation.navigate('addService');
+          }
+        }}>
         <Text style={styles.raiseComplaints}>
           {state.index === 2 || state.index === 3 ? 'Add' : 'Raise'}
         </Text>

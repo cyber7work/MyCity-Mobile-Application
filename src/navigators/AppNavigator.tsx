@@ -1,17 +1,37 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {AppStackParams, HomeTabsParams} from '../utils/types';
+import {
+  AppStackParams,
+  HomeTabsParams,
+  MyServicesStackParams,
+} from '../utils/types';
 import HomeScreen from '../screens/app/home/HomeScreen';
 import CustomBottomTab from './CustomBottomTab';
 import CityHomeScreen from '../screens/app/city/CityHomeScreen';
 import MyServicesHomeScreen from '../screens/app/myServices/MyServicesHomeScreen';
 import ServicesHomeScreen from '../screens/app/services/ServicesHomeScreen';
 import MyProfileScreen from '../screens/app/profile/MyProfileScreen';
+import AddServiceScreen from '../screens/app/myServices/AddServiceScreen';
 
 const Stack = createNativeStackNavigator<AppStackParams>();
+const MyServicesStack = createNativeStackNavigator<MyServicesStackParams>();
 
 const Tab = createBottomTabNavigator<HomeTabsParams>();
+
+const MyServicesStackNavigator = () => {
+  return (
+    <MyServicesStack.Navigator
+      initialRouteName="homeServices"
+      screenOptions={{headerShown: false}}>
+      <MyServicesStack.Screen
+        name="homeServices"
+        component={MyServicesHomeScreen}
+      />
+      <MyServicesStack.Screen name="addService" component={AddServiceScreen} />
+    </MyServicesStack.Navigator>
+  );
+};
 
 const HomeTabNavigator = () => {
   return (
@@ -22,7 +42,7 @@ const HomeTabNavigator = () => {
       screenOptions={{headerShown: false}}>
       <Tab.Screen name="homeScreen" component={HomeScreen} />
       <Tab.Screen name="city" component={CityHomeScreen} />
-      <Tab.Screen name="myServices" component={MyServicesHomeScreen} />
+      <Tab.Screen name="myServices" component={MyServicesStackNavigator} />
       <Tab.Screen name="services" component={ServicesHomeScreen} />
     </Tab.Navigator>
   );

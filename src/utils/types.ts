@@ -17,4 +17,9 @@ export type HomeTabsParams = {
   services: undefined;
 };
 
+export type MyServicesStackParams = {
+  homeServices: undefined;
+  addService: undefined;
+};
+
 export default null;
