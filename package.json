@@ -11,12 +11,15 @@
     "apk:debug-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && gradlew assembleDebug"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
     "@react-navigation/bottom-tabs": "^6.5.4",
     "@react-navigation/native": "^6.1.3",
     "@react-navigation/native-stack": "^6.9.9",
+    "axios": "^1.3.4",
     "react": "18.2.0",
+    "react-hook-form": "^7.43.2",
     "react-native": "0.71.0",
-    "react-native-bootsplash": "^4.4.1",
+    "react-native-bootsplash": "^4.5.2",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-reanimated": "^2.14.4",
@@ -25,7 +28,8 @@
     "react-native-screens": "^3.19.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^13.7.0",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "yup": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

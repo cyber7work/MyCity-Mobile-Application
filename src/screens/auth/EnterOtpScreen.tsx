@@ -5,7 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
+import {Controller, useForm} from 'react-hook-form';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {COLORS} from '../../utils/Colors';
 import Home from '../../assets/svgs/home.svg';
@@ -15,12 +17,27 @@ import fonts from '../../utils/fonts';
 import {AuthStackParams} from '../../utils/types';
 import {height} from '../../utils/globals';
 import OtpComponent from '../../components/Otp';
+import {useSubmit} from '../../apis/client';
+import {auth} from '../../apis/api';
+import {logger} from '../../utils/helpers';
 
 type Props = NativeStackScreenProps<AuthStackParams, 'otp'>;
 
 /* React functional component */
 const EnterOtpScreen = ({route, navigation}: Props) => {
-  const [otp, setOtp] = useState<Array<string>>(['', '', '', '', '', '', '']);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const {
+    handleSubmit,
+    formState: {errors},
+    control,
+    reset,
+  } = useForm<{otp: Array<string>}>({
+    defaultValues: {
+      otp: ['', '', '', '', '', '', ''],
+    },
+    // resolver: yupResolver(schema),
+  });
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
@@ -35,20 +52,49 @@ const EnterOtpScreen = ({route, navigation}: Props) => {
         <View style={styles.otpContainer}>
           <Text style={styles.header}>Enter OTP</Text>
           <Text style={styles.otpTxt}>
-            a 6 digit otp has been sent to {route.params.phone}
+            a 6 digit otp has been sent to +91{route.params.phone}
           </Text>
 
-          <OtpComponent otpValue={otp} updateOtpValue={setOtp} />
+          <Controller
+            control={control}
+            name="otp"
+            render={({field: {onChange, value}}) => {
+              return (
+                <OtpComponent otpValue={value} updateOtpValue={onChange} />
+              );
+            }}
+          />
         </View>
 
         <View style={styles.loginBtnContainer}>
           <TouchableOpacity
+            disabled={loading}
             style={styles.loginContainer}
             activeOpacity={0.6}
-            onPress={() => {
-              navigation.navigate('register');
-            }}>
-            <Text style={styles.login}>Login</Text>
+            onPress={handleSubmit(formData => {
+              setLoading(true);
+
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              useSubmit(auth.LOGIN, {
+                mobile_number: route.params.phone,
+                otp: '050505',
+              })
+                .then(() => {
+                  setLoading(false);
+                  navigation.navigate('register');
+                  reset();
+                })
+                .catch(err => {
+                  logger(err);
+                  console.log('her');
+                  setLoading(false);
+                });
+            })}>
+            {loading ? (
+              <ActivityIndicator color={COLORS.secondary} />
+            ) : (
+              <Text style={styles.login}>Login</Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>

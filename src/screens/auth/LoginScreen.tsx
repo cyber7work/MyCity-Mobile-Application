@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,7 +6,11 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
+  ActivityIndicator,
 } from 'react-native';
+import {Controller, useForm} from 'react-hook-form';
+import * as yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {COLORS} from '../../utils/Colors';
 import Home from '../../assets/svgs/home.svg';
@@ -14,11 +18,33 @@ import Login from '../../assets/svgs/login.svg';
 import {fontSizes} from '../../utils/fontSizes';
 import fonts from '../../utils/fonts';
 import {AuthStackParams} from '../../utils/types';
+import {useSubmit} from '../../apis/client';
+import {auth} from '../../apis/api';
+import {logger} from '../../utils/helpers';
+import {errorStyle} from '../../utils/styles';
 
 type Props = NativeStackScreenProps<AuthStackParams, 'login'>;
 
+const schema = yup.object().shape({
+  mobile_number: yup.string().required('Please enter mobile and try again'),
+});
+
 /* React functional component */
 const LoginScreen = ({navigation}: Props) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const {
+    handleSubmit,
+    formState: {errors},
+    control,
+    reset,
+  } = useForm<{mobile_number: string}>({
+    defaultValues: {
+      mobile_number: '',
+    },
+    resolver: yupResolver(schema),
+  });
+
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.container}>
@@ -32,21 +58,51 @@ const LoginScreen = ({navigation}: Props) => {
         <View style={styles.loginContainer}>
           <Text style={styles.header}>Login</Text>
 
-          <TextInput
-            keyboardType="numeric"
-            placeholder="+91 Mobile Number"
-            style={styles.input}
+          <Controller
+            name="mobile_number"
+            control={control}
+            render={({field: {onChange, value}}) => {
+              return (
+                <TextInput
+                  keyboardType="numeric"
+                  placeholder="+91 Mobile Number"
+                  style={styles.input}
+                  value={value}
+                  onChangeText={onChange}
+                  maxLength={10}
+                />
+              );
+            }}
           />
+          {errors.mobile_number && (
+            <Text style={errorStyle}>{errors.mobile_number.message}</Text>
+          )}
         </View>
 
         <View style={styles.continueBtnContainer}>
           <TouchableOpacity
+            disabled={loading}
             style={styles.continueContainer}
             activeOpacity={0.6}
-            onPress={() => {
-              navigation.navigate('otp', {phone: '+918603678862'});
-            }}>
-            <Text style={styles.continue}>Continue</Text>
+            onPress={handleSubmit(formData => {
+              setLoading(true);
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              useSubmit(auth.SEND_OTP, formData)
+                .then(() => {
+                  setLoading(false);
+                  navigation.navigate('otp', {phone: formData.mobile_number});
+                  reset();
+                })
+                .catch(err => {
+                  logger(err);
+                  setLoading(false);
+                });
+            })}>
+            {loading ? (
+              <ActivityIndicator color={COLORS.secondary} />
+            ) : (
+              <Text style={styles.continue}>Continue</Text>
+            )}
           </TouchableOpacity>
         </View>
 

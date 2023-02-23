@@ -11,6 +11,7 @@ export const COLORS = {
   color3: '#E0E0E0',
   color4: '#AFAFAF',
   color5: '#C0BFBF',
+  error: 'red',
 };
 
 export default null;
