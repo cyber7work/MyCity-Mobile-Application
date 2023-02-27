@@ -24,7 +24,7 @@ export const useFetch = (url: string, initialData: Array<any> = []) => {
       headers: new Headers({
         'x-auth-token': token,
         'Content-Type': 'application/json',
-      }),
+      } as HeadersInit_),
     })
       .then(async response => {
         if (!response.ok) {
@@ -57,9 +57,10 @@ export const useSubmit = async (
   return fetch(url, {
     method: type,
     headers: new Headers({
+      Accept: 'application/json',
       'x-auth-token': token,
       'Content-Type': 'application/json',
-    }),
+    } as HeadersInit_),
     body: JSON.stringify(body),
   }).then(async response => {
     if (!response.ok) {

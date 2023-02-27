@@ -29,7 +29,7 @@ const EnterOtpScreen = ({route, navigation}: Props) => {
 
   const {
     handleSubmit,
-    formState: {errors},
+    // formState: {errors},
     control,
     reset,
   } = useForm<{otp: Array<string>}>({
@@ -71,7 +71,7 @@ const EnterOtpScreen = ({route, navigation}: Props) => {
             disabled={loading}
             style={styles.loginContainer}
             activeOpacity={0.6}
-            onPress={handleSubmit(formData => {
+            onPress={handleSubmit(() => {
               setLoading(true);
 
               // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -91,7 +91,7 @@ const EnterOtpScreen = ({route, navigation}: Props) => {
                 });
             })}>
             {loading ? (
-              <ActivityIndicator color={COLORS.secondary} />
+              <ActivityIndicator color={COLORS.secondary} size={20} />
             ) : (
               <Text style={styles.login}>Login</Text>
             )}

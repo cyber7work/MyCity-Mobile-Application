@@ -99,7 +99,7 @@ const LoginScreen = ({navigation}: Props) => {
                 });
             })}>
             {loading ? (
-              <ActivityIndicator color={COLORS.secondary} />
+              <ActivityIndicator color={COLORS.secondary} size={20} />
             ) : (
               <Text style={styles.continue}>Continue</Text>
             )}

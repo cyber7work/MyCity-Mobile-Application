@@ -1,34 +1,79 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {COLORS} from '../../utils/Colors';
 import fonts from '../../utils/fonts';
 import {fontSizes} from '../../utils/fontSizes';
 import {width} from '../../utils/globals';
 import SplashOne from '../../assets/svgs/splashOne.svg';
+import SplashTwo from '../../assets/svgs/splashTwo.svg';
+import SplashThree from '../../assets/svgs/splashThree.svg';
+import SplashFour from '../../assets/svgs/splashFour.svg';
+import SplashFive from '../../assets/svgs/splashFive.svg';
 import Home from '../../assets/svgs/home.svg';
 import {AuthStackParams} from '../../utils/types';
 
 type Props = NativeStackScreenProps<AuthStackParams, 'splash'>;
 
-const renderSplashCarousel = () => {
+const CarouselItem = ({
+  item,
+  index,
+}: {
+  item: {title: string; subtitle: string; body: string; img: JSX.Element};
+  index: React.Key;
+}) => {
   return (
-    <View>
+    <View key={index}>
       <View style={styles.txtContainer}>
-        <Text style={styles.header}>My city</Text>
-        <Text style={[styles.header, styles.application]}>Application</Text>
-        <Text style={styles.discover}>Discover Your City</Text>
+        <Text style={styles.header}>{item.title}</Text>
+        <Text style={[styles.header, styles.application]}>{item.subtitle}</Text>
+        <Text style={styles.discover}>{item.body}</Text>
       </View>
-      <View style={styles.splashSvgContainer}>
-        <SplashOne />
-      </View>
+      <View style={styles.splashSvgContainer}>{item.img}</View>
     </View>
   );
 };
 
+const data = [
+  {
+    title: 'My city',
+    subtitle: 'Application',
+    body: 'Discover Your City',
+    img: <SplashOne />,
+  },
+  {
+    title: 'stay connected with',
+    subtitle: 'your neighbour',
+    body: 'know about what’s going on in your city',
+    img: <SplashTwo />,
+  },
+  {
+    title: 'resolve you',
+    subtitle: 'complaints quickly',
+    body: 'raise complaints, get service requests resolved',
+    img: <SplashThree />,
+  },
+  {
+    title: 'find nearby park,',
+    subtitle: 'restaurents & shops',
+    body: 'get to know about your nearby places where you get better deals',
+    img: <SplashFour />,
+  },
+  {
+    title: 'Lorem ipsum dolor',
+    subtitle: 'sit amet',
+    body: 'Lorem ipsum dolor sit amet consectetur. Sollicitudin sed.',
+    img: <SplashFive />,
+  },
+];
+
 /* React functional component */
 const SplashScreen = ({navigation}: Props) => {
+  const isCarousel = useRef(null);
+  const [index, setIndex] = useState(0);
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -40,7 +85,27 @@ const SplashScreen = ({navigation}: Props) => {
         <Home width={22} height={22} />
       </View>
       <View style={styles.innerContainer}>
-        {renderSplashCarousel()}
+        <View>
+          <Carousel
+            ref={isCarousel}
+            data={data}
+            renderItem={CarouselItem}
+            sliderWidth={width}
+            itemWidth={width}
+            inactiveSlideShift={0}
+            onSnapToItem={idx => {
+              setIndex(idx);
+            }}
+          />
+
+          <Pagination
+            dotsLength={data.length}
+            activeDotIndex={index}
+            dotStyle={styles.dotStyle}
+            inactiveDotOpacity={0.4}
+            inactiveDotScale={0.6}
+          />
+        </View>
 
         <View style={styles.exploreBtnContainer}>
           <TouchableOpacity
@@ -73,7 +138,7 @@ const styles = StyleSheet.create({
   },
   txtContainer: {marginHorizontal: 12, marginBottom: 25},
   splashSvgContainer: {alignSelf: 'center'},
-  exploreBtnContainer: {alignItems: 'center'},
+  exploreBtnContainer: {alignItems: 'center', marginBottom: 25},
   header: {
     textTransform: 'capitalize',
     color: COLORS.secondary,
@@ -86,6 +151,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontFamily: fonts.cabinRegular,
     letterSpacing: 0.5,
+    textTransform: 'capitalize',
   },
   explore: {
     fontSize: fontSizes.h2,
@@ -113,6 +179,13 @@ const styles = StyleSheet.create({
     left: -width / 2,
   },
   scrollView: {flexGrow: 1},
+  dotStyle: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.92)',
+  },
 });
 
 export default SplashScreen;

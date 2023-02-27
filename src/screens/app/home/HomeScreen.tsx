@@ -5,6 +5,7 @@ import Header from '../../../components/Header';
 import SearchBarWithBtn from '../../../components/SearchBarWithBtn';
 import {COLORS} from '../../../utils/Colors';
 import ServiceList from './components/ServiceList';
+// import Slider from './components/Slider';
 // import {AppStackParams} from '../../../utils/types';
 
 // type Props = NativeStackScreenProps<AppStackParams, 'home'>;
@@ -16,6 +17,7 @@ const HomeScreen = () => {
       <Header />
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.container}>
+          {/* <Slider /> */}
           <SearchBarWithBtn btnLabel="Services" />
           <ServiceList />
         </View>
