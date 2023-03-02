@@ -8,7 +8,8 @@ import {
 } from '../utils/types';
 import HomeScreen from '../screens/app/home/HomeScreen';
 import CustomBottomTab from './CustomBottomTab';
-import CityHomeScreen from '../screens/app/city/CityHomeScreen';
+// import CityHomeScreen from '../screens/app/city/CityHomeScreen';
+import CityScreenUpdated from '../screens/app/city/CityScreenUpdated';
 import MyServicesHomeScreen from '../screens/app/myServices/MyServicesHomeScreen';
 import ServicesHomeScreen from '../screens/app/services/ServicesHomeScreen';
 import MyProfileScreen from '../screens/app/profile/MyProfileScreen';
@@ -41,7 +42,7 @@ const HomeTabNavigator = () => {
       tabBar={props => <CustomBottomTab key="customBar" {...props} />}
       screenOptions={{headerShown: false}}>
       <Tab.Screen name="homeScreen" component={HomeScreen} />
-      <Tab.Screen name="city" component={CityHomeScreen} />
+      <Tab.Screen name="city" component={CityScreenUpdated} />
       <Tab.Screen name="myServices" component={MyServicesStackNavigator} />
       <Tab.Screen name="services" component={ServicesHomeScreen} />
     </Tab.Navigator>

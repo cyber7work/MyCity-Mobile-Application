@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
-import AppNavigator from './src/navigators/AppNavigator';
-// import AuthNavigator from './src/navigators/AuthNavigator';
+// import AppNavigator from './src/navigators/AppNavigator';
+import AuthNavigator from './src/navigators/AuthNavigator';
 
 /* React functional component */
 const App = (): JSX.Element => {
@@ -10,14 +10,14 @@ const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
 
   useEffect(() => {
-    RNBootSplash.hide();
+    RNBootSplash.hide({duration: 100, fade: true});
   }, []);
 
   return (
     <>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {/* <AuthNavigator /> */}
-      <AppNavigator />
+      <AuthNavigator />
+      {/* <AppNavigator /> */}
     </>
   );
 };

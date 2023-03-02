@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import Header from '../../../components/Header';
 import {COLORS} from '../../../utils/Colors';
+import AddSelfServiceTab from './components/AddSelfServiceTab';
 import MyServicesHeader from './components/MyServicesHeader';
 import MyServicesTabs, {TabsType} from './components/MyServicesTabs';
+import OtherSelfServiceTab from './components/OtherSelfServiceTab';
 
 /* react functional component */
 const AddServiceScreen = () => {
@@ -11,9 +13,11 @@ const AddServiceScreen = () => {
   const [selectedTab, setSelectedTab] = useState<TabsType>('self');
 
   return (
-    <View>
+    <View style={styles.root}>
       <Header />
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollView}>
         <View style={styles.container}>
           <View style={styles.headerContainer}>
             <MyServicesHeader showBackButton />
@@ -23,6 +27,9 @@ const AddServiceScreen = () => {
             selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
           />
+
+          {selectedTab === 'self' && <AddSelfServiceTab />}
+          {selectedTab === 'other' && <OtherSelfServiceTab />}
         </View>
       </ScrollView>
     </View>
@@ -31,7 +38,8 @@ const AddServiceScreen = () => {
 
 /* styles */
 const styles = StyleSheet.create({
-  scrollView: {flexGrow: 1, height: '100%'},
+  root: {flex: 1},
+  scrollView: {paddingBottom: 30},
   container: {flex: 1, backgroundColor: COLORS.bgColor},
   headerContainer: {padding: 10},
 });

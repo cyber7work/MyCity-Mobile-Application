@@ -3,13 +3,10 @@ import {View, ScrollView, Image, StyleSheet} from 'react-native';
 
 const data = [
   {
-    img: require('../../../../assets/img/slider/sliderOne.png'),
+    img: require('../../../../assets/img/slider/sliderThree.png'),
   },
   {
-    img: require('../../../../assets/img/slider/sliderTwo.png'),
-  },
-  {
-    img: require('../../../../assets/img/slider/sliderOne.png'),
+    img: require('../../../../assets/img/slider/sliderThree.png'),
   },
 ];
 
@@ -40,8 +37,8 @@ const Slider = () => {
 
 /* styles */
 const styles = StyleSheet.create({
-  container: {marginBottom: 15},
-  itemContainer: {marginRight: 5, width: 195},
+  container: {marginBottom: 20},
+  itemContainer: {marginRight: 5, width: 250},
   itemImg: {resizeMode: 'cover'},
 });
 

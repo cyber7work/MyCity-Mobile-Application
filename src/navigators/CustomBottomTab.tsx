@@ -77,7 +77,7 @@ const CustomBottomTab = ({state, navigation}: BottomTabBarProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {backgroundColor: COLORS.bgColor},
+  container: {backgroundColor: 'transparent'},
   raiseComplaintsContainer: {
     alignSelf: 'center',
     backgroundColor: COLORS.primary,

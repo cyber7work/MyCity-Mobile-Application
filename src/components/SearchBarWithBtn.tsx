@@ -15,17 +15,22 @@ export type SelectedType = 'services' | 'city';
 
 type Props = {
   btnLabel: string;
+  showLabel?: boolean;
 };
 
 /* React functional component */
-const SearchBarWithBtn = ({btnLabel}: Props) => {
+const SearchBarWithBtn = ({btnLabel, showLabel = true}: Props) => {
   return (
     <View style={styles.container}>
-      <View style={styles.leftContainer}>
-        <TouchableOpacity style={styles.leftInnerContainer} activeOpacity={0.6}>
-          <Text style={styles.txt}>{btnLabel}</Text>
-        </TouchableOpacity>
-      </View>
+      {showLabel && (
+        <View style={styles.leftContainer}>
+          <TouchableOpacity
+            style={styles.leftInnerContainer}
+            activeOpacity={0.6}>
+            <Text style={styles.txt}>{btnLabel}</Text>
+          </TouchableOpacity>
+        </View>
+      )}
       <View style={styles.rightContainer}>
         <View style={styles.searchBarContainer}>
           <IoniconIcon size={16} name="search-outline" color={COLORS.color4} />
@@ -47,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  leftContainer: {flex: 1.2},
+  leftContainer: {flex: 1.2, paddingRight: 15},
   leftInnerContainer: {
     backgroundColor: COLORS.color3,
     alignItems: 'center',
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.h5,
     textTransform: 'capitalize',
   },
-  rightContainer: {flex: 3, paddingLeft: 20},
+  rightContainer: {flex: 3},
   searchBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',

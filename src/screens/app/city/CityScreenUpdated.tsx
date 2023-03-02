@@ -1,25 +1,22 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-// import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import Header from '../../../components/Header';
 import SearchBarWithBtn from '../../../components/SearchBarWithBtn';
 import {COLORS} from '../../../utils/Colors';
-import ServiceList from './components/ServiceList';
+import CityHeader from './components/CityHeader';
 import Slider from './components/Slider';
-// import {AppStackParams} from '../../../utils/types';
-
-// type Props = NativeStackScreenProps<AppStackParams, 'home'>;
 
 /* react functional component */
-const HomeScreen = () => {
+const CityScreenUpdated = () => {
   return (
     <View>
       <Header />
+
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.container}>
+          <CityHeader />
           <Slider />
-          <SearchBarWithBtn btnLabel="Services" />
-          <ServiceList />
+          <SearchBarWithBtn btnLabel="City" showLabel={false} />
         </View>
       </ScrollView>
     </View>
@@ -32,4 +29,4 @@ const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: COLORS.bgColor, padding: 10},
 });
 
-export default HomeScreen;
+export default CityScreenUpdated;
